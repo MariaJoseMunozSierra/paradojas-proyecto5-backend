@@ -10,7 +10,6 @@ const respuestaSchema = new mongoose.Schema(
  
     capa: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Capa",
       required: [true, "La capa es obligatoria"],
     },
  

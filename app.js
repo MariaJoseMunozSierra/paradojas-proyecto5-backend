@@ -9,6 +9,9 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 
+const respuestaRoutes = require("./routes/Respuestaroutes");
+app.use("/api/respuestas", respuestaRoutes);
+
 app.use(errorHandler);
 
 mongoose

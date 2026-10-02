@@ -1,15 +1,12 @@
-const mongoose = require("mongoose");
 const Respuesta = require("../models/Respuesta");
+const Paradoja = require("../models/Paradoja");
  
 async function crearRespuesta({ capa, autor, tipo, contenido, respuestaPadre }) {
-  // Se obtiene el modelo Capa al momento de usarlo (se crea en el commit 3)
-  const Capa = mongoose.model("Capa");
- 
-  const capaExistente = await Capa.findById(capa);
-  if (!capaExistente) {
+  const paradoja = await Paradoja.findOne({ "capas._id": capa });
+  if (!paradoja) {
     throw { status: 404, message: "La capa no existe" };
   }
- 
+  const capaExistente = paradoja.capas.id(capa);
   if (respuestaPadre) {
     const padre = await Respuesta.findById(respuestaPadre);
     if (!padre) {
@@ -20,15 +17,16 @@ async function crearRespuesta({ capa, autor, tipo, contenido, respuestaPadre }) 
     }
   }
  
-  const nuevaRespuesta = await Respuesta.create({
-    paradoja: capaExistente.paradoja,
+   const nuevaRespuesta = await Respuesta.create({
+      paradoja: paradoja._id,
     capa: capaExistente._id,
     autor,
     tipo,
     contenido,
     respuestaPadre: respuestaPadre || null,
   });
- 
+   paradoja.intentos += 1;
+  await paradoja.save();  
   return await nuevaRespuesta.populate("autor", "username escuela");
 }
  
