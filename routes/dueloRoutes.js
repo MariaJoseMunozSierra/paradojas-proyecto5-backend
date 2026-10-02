@@ -2,7 +2,7 @@ const express = require("express");
 const { body, param } = require("express-validator");
 const dueloControllers = require("../controllers/dueloControllers");
 const { verificarValidaciones } = require("../middlewares/validaciones");
-const verificarToken = require("../middlewares/Verificartoken");
+const verificarToken = require("../middlewares/verificarToken");
  
 const router = express.Router();
  

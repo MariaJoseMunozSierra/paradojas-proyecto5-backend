@@ -2,6 +2,7 @@ const express = require("express");
 const { body } = require("express-validator");
 const paradojaControllers = require("../controllers/paradojaControllers");
 const { verificarValidaciones } = require("../middlewares/validaciones");
+const verificarToken = require("../middlewares/verificarToken");
 
 const router = express.Router();
 
@@ -16,7 +17,7 @@ const validarParadoja = [
   body("creador_id").notEmpty().withMessage("El creador_id es obligatorio"),
 ];
 
-router.post("/", validarParadoja, verificarValidaciones, paradojaControllers.crear);
+router.post("/", verificarToken, validarParadoja, verificarValidaciones, paradojaControllers.crear);
 router.get("/", paradojaControllers.listar);
 router.get("/:id", paradojaControllers.detalle);
 

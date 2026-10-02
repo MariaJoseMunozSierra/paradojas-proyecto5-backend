@@ -1,24 +1,21 @@
 const jwt = require("jsonwebtoken");
- 
+
 function verificarToken(req, res, next) {
-  const header = req.headers.authorization;
- 
-  if (!header || !header.startsWith("Bearer ")) {
-    throw { status: 401, message: "Token no proporcionado" };
+  const encabezadoAuth = req.headers.authorization;
+
+  if (!encabezadoAuth || !encabezadoAuth.startsWith("Bearer ")) {
+    return res.status(401).json({ error: "No se envió un token de acceso" });
   }
- 
-  const token = header.split(" ")[1];
- 
-  let payload;
+
+  const token = encabezadoAuth.split(" ")[1];
+
   try {
-    payload = jwt.verify(token, process.env.JWT_SECRET);
+    const datosDecodificados = jwt.verify(token, process.env.JWT_SECRET);
+    req.usuarioId = datosDecodificados.id;
+    next();
   } catch (error) {
-    throw { status: 401, message: "Token inválido o expirado" };
+    return res.status(401).json({ error: "Token inválido o expirado" });
   }
- 
-  // El payload trae { id, username } (ver generarToken en authService)
-  req.usuario = payload;
-  next();
 }
- 
+
 module.exports = verificarToken;
