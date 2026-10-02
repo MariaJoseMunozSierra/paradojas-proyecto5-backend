@@ -3,6 +3,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/authRoutes");
 const paradojaRoutes = require("./routes/paradojaRoutes");
+const respuestaRoutes = require("./routes/respuestaRoutes");
+const dueloRoutes = require("./routes/dueloRoutes");
 const errorHandler = require("./middlewares/errorHandler");
 
 const app = express();
@@ -10,9 +12,8 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/paradojas", paradojaRoutes);
-
-const respuestaRoutes = require("./routes/Respuestaroutes");
 app.use("/api/respuestas", respuestaRoutes);
+app.use("/api/duelos", dueloRoutes);
 
 app.use(errorHandler);
 
