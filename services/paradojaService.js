@@ -24,9 +24,42 @@ async function obtenerParadojaPorId(id) {
   return paradoja;
 }
 
+async function actualizarParadoja(id, datosNuevos) {
+  const paradoja = await Paradoja.findById(id);
+  if (!paradoja) {
+    throw { status: 404, message: "Paradoja no encontrada" };
+  }
+
+  if (datosNuevos.titulo !== undefined) {
+    paradoja.titulo = datosNuevos.titulo;
+  }
+  if (datosNuevos.statement !== undefined) {
+    paradoja.statement = datosNuevos.statement;
+  }
+  if (datosNuevos.categoria !== undefined) {
+    paradoja.categoria = datosNuevos.categoria;
+  }
+  if (datosNuevos.estado !== undefined) {
+    paradoja.estado = datosNuevos.estado;
+  }
+
+  await paradoja.save();
+  return paradoja;
+}
+
+async function eliminarParadoja(id) {
+  const paradoja = await Paradoja.findByIdAndDelete(id);
+  if (!paradoja) {
+    throw { status: 404, message: "Paradoja no encontrada" };
+  }
+  return paradoja;
+}
+
 module.exports = {
   crearParadoja,
   listarParadojas,
   obtenerParadojaPorId,
+  actualizarParadoja,
+  eliminarParadoja,
   calcularChaosIndex: chaosService.calcularChaosIndex,
 };

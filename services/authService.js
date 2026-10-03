@@ -34,7 +34,7 @@ async function login({ username, password }) {
 
 function generarToken(usuario) {
   return jwt.sign(
-    { id: usuario._id, username: usuario.username },
+    { id: usuario._id, username: usuario.username, role: usuario.role },
     process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRES_IN }
   );

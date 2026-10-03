@@ -3,6 +3,7 @@ const { body } = require("express-validator");
 const paradojaControllers = require("../controllers/paradojaControllers");
 const { verificarValidaciones } = require("../middlewares/validaciones");
 const verificarToken = require("../middlewares/verificarToken");
+const autorizar = require("../middlewares/autorizar");
 
 const router = express.Router();
 
@@ -20,5 +21,7 @@ const validarParadoja = [
 router.post("/", verificarToken, validarParadoja, verificarValidaciones, paradojaControllers.crear);
 router.get("/", paradojaControllers.listar);
 router.get("/:id", paradojaControllers.detalle);
+router.put("/:id", verificarToken, paradojaControllers.actualizar);
+router.delete("/:id", verificarToken, autorizar(["admin"]), paradojaControllers.eliminar);
 
 module.exports = router;

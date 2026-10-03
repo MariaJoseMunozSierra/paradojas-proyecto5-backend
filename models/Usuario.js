@@ -26,6 +26,12 @@ const usuarioSchema = new mongoose.Schema(
       required: [true, "La escuela filosófica es obligatoria"],
     },
 
+    role: {
+      type: String,
+      enum: ["admin", "user"],
+      default: "user",
+    },
+
     paradox_score: {
       type: Number,
       default: 0,
@@ -35,14 +41,11 @@ const usuarioSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-
   },
   { timestamps: true }
 );
 
-
 usuarioSchema.pre("save", async function () {
-
   if (!this.isModified("password")) {
     return;
   }
