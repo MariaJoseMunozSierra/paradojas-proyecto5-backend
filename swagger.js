@@ -13,6 +13,10 @@ const opciones = {
         url: "http://localhost:3000",
         description: "Servidor local",
       },
+      {
+        url: "https://paradojas-backend.onrender.com",
+        description: "Servidor desplegado (Render)",
+      },
     ],
   },
   apis: ["./routes/*.js"],
