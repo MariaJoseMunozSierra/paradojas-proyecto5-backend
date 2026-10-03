@@ -5,6 +5,7 @@ const authRoutes = require("./routes/authRoutes");
 const paradojaRoutes = require("./routes/paradojaRoutes");
 const respuestaRoutes = require("./routes/respuestaRoutes");
 const dueloRoutes = require("./routes/dueloRoutes");
+const votoRoutes = require("./routes/votoRoutes");
 const errorHandler = require("./middlewares/errorHandler");
  
 const app = express();
@@ -14,6 +15,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/paradojas", paradojaRoutes);
 app.use("/api/respuestas", respuestaRoutes);
 app.use("/api/duelos", dueloRoutes);
+app.use("/api/votos", votoRoutes);
  
 app.use(errorHandler);
  
