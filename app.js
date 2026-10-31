@@ -9,6 +9,7 @@ const paradojaRoutes = require("./routes/paradojaRoutes");
 const respuestaRoutes = require("./routes/respuestaRoutes");
 const dueloRoutes = require("./routes/dueloRoutes");
 const votoRoutes = require("./routes/votoRoutes");
+const rankingRoutes = require("./routes/rankingRoutes");
 const errorHandler = require("./middlewares/errorHandler");
 
 const app = express();
@@ -22,6 +23,7 @@ app.use("/api/paradojas", paradojaRoutes);
 app.use("/api/respuestas", respuestaRoutes);
 app.use("/api/duelos", dueloRoutes);
 app.use("/api/votos", votoRoutes);
+app.use("/api/ranking", rankingRoutes);
 
 app.use(errorHandler);
 
