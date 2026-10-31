@@ -13,8 +13,12 @@ function verificarToken(req, res, next) {
     const datosDecodificados = jwt.verify(token, process.env.JWT_SECRET);
     req.usuarioId = datosDecodificados.id;
     req.usuarioRole = datosDecodificados.role;
+    req.usuario = {
+      id: datosDecodificados.id,
+      username: datosDecodificados.username,
+      role: datosDecodificados.role,
+    };
     next();
-    
   } catch (error) {
     return res.status(401).json({ error: "Token inválido o expirado" });
   }
