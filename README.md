@@ -62,7 +62,7 @@ Authorization: Bearer TU_TOKEN
 
 Hay dos roles: `user` y `admin`. Eliminar una paradoja solo lo puede hacer un `admin`.
 
-## Endpoints principales
+## Endpoints principales :
 | Método |            Ruta              |                    Descripción                 |     Requiere      |
 |--------|------------------------------|------------------------------------------------|-------------------|
 | POST   | /api/auth/registro           | Crear una cuenta                               | Nada              |
@@ -82,8 +82,6 @@ Hay dos roles: `user` y `admin`. Eliminar una paradoja solo lo puede hacer un `a
 | GET    | /api/ranking                 | Ver el ranking de filósofos                    | Nada              |
 
 Todos los endpoints con ejemplos están en /api-docs.
-
-También existen las rutas `/api/respuestas` (responder capas) y `/api/votos` (votar respuestas). Todos los endpoints con ejemplos están en `/api-docs`.
 
 ## Autores :
 - María José Muñoz (@MariaJoseMunozSierra)
