@@ -63,22 +63,27 @@ Authorization: Bearer TU_TOKEN
 Hay dos roles: `user` y `admin`. Eliminar una paradoja solo lo puede hacer un `admin`.
 
 ## Endpoints principales
-| Método |           Ruta            |              Descripción            |     Requiere      |
-|--------|---------------------------|-------------------------------------|-------------------|
-| POST   | /api/auth/registro        | Crear una cuenta                    | Nada              |
-| POST   | /api/auth/login           | Iniciar sesión                      | Nada              |
-| GET    | /api/paradojas            | Listar paradojas con su Chaos Index | Nada              |
-| GET    | /api/paradojas/:id        | Ver una paradoja                    | Nada              |
-| POST   | /api/paradojas            | Crear una paradoja                  | Token             |
-| PUT    | /api/paradojas/:id        | Editar una paradoja                 | Token             |
-| DELETE | /api/paradojas/:id        | Eliminar una paradoja               | Token y rol admin |
-| POST   | /api/duelos               | Retar a otro usuario                | Token             |
-| GET    | /api/duelos/mios          | Ver mis duelos                      | Token             |
-| PATCH  | /api/duelos/:id/responder | Aceptar o rechazar un duelo         | Token             |
-| PATCH  | /api/duelos/:id/finalizar | Finalizar un duelo                  | Token             |
-| GET    | /api/ranking              | Ver el ranking de filósofos         | Nada              |
+| Método |            Ruta              |                    Descripción                 |     Requiere      |
+|--------|------------------------------|------------------------------------------------|-------------------|
+| POST   | /api/auth/registro           | Crear una cuenta                               | Nada              |
+| POST   | /api/auth/login              | Iniciar sesión                                 | Nada              |
+| GET    | /api/paradojas               | Listar paradojas con su Chaos Index            | Nada              |
+| GET    | /api/paradojas/:id           | Ver una paradoja                               | Nada              |
+| POST   | /api/paradojas               | Crear una paradoja                             | Token             |
+| PUT    | /api/paradojas/:id           | Editar una paradoja                            | Token             |
+| DELETE | /api/paradojas/:id           | Eliminar una paradoja                          | Token y rol admin |
+| POST   | /api/respuestas              | Responder una capa (tipo resolve o complicate) | Token             |
+| GET    | /api/respuestas/capa/:capaId | Ver las respuestas de una capa                 | Nada              |
+| POST   | /api/votos                   | Votar una respuesta (agree, disagree o abstain)| Token             |
+| POST   | /api/duelos                  | Retar a otro usuario                           | Token             |
+| GET    | /api/duelos/mios             | Ver mis duelos                                 | Token             |
+| PATCH  | /api/duelos/:id/responder    | Aceptar o rechazar un duelo                    | Token             |
+| PATCH  | /api/duelos/:id/finalizar    | Finalizar un duelo                             | Token             |
+| GET    | /api/ranking                 | Ver el ranking de filósofos                    | Nada              |
 
-// También existen las rutas `/api/respuestas` (responder capas) y `/api/votos` (votar respuestas). Todos los endpoints con ejemplos están en `/api-docs` //
+Todos los endpoints con ejemplos están en /api-docs.
+
+También existen las rutas `/api/respuestas` (responder capas) y `/api/votos` (votar respuestas). Todos los endpoints con ejemplos están en `/api-docs`.
 
 ## Autores :
 - María José Muñoz (@MariaJoseMunozSierra)
